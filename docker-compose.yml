@@ -29,7 +29,8 @@ services:
     networks:
       - autogpt-ghost
       - auto-gpt.tech
-    
+    depends_on:
+      - db
 
   db:
     image: mysql:8.0
