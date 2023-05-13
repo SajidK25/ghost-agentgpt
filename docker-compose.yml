@@ -38,9 +38,13 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - autogpt-ghost
     volumes:
-          - ./log:/var/log/mysql
-          - ./lib:/var/lib/mysql
+      - ghost-db-data:/var/lib/mysql
+  
+volumes:
+  ghost-db-data:
 networks:
   auto-gpt.tech:
     external: true
