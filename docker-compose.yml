@@ -25,7 +25,6 @@ services:
     image: mysql:8.0
     container_name: ghost-db
     restart: always
-    hostname: db
     env_file:
       - .env
     volumes:
