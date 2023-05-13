@@ -13,41 +13,24 @@ services:
       - "traefik.http.routers.ghost.rule=Host(`auto-gpt.tech`)"
       - "traefik.http.routers.ghost.entrypoints=websecure"
       - "traefik.http.routers.ghost.tls.certresolver=myresolver"
-    environment:
-      # see https://ghost.org/docs/config/#configuration-options
-      database__client: mysql
-      database__connection__host: db
-      database__connection__user: ${DB_USER}
-      database__connection__password: ${DB_PASSWORD}
-      database__connection__database: ${DATABASE}
-      # this url value is just an example, and is likely wrong for your environment!
-      url: ${GHOST_URL}
-      # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
-      #NODE_ENV: development
     volumes:
-      - ghost-data:/var/lib/ghost/content
+      - ./content:/var/lib/ghost/content
+      - ./config.production.json:/var/lib/ghost/config.development.json
     networks:
-      - autogpt-ghost
       - auto-gpt.tech
     depends_on:
       - db
 
   db:
     image: mysql:8.0
-    command: --default-authentication-plugin=mysql_native_password
     container_name: ghost-db
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-    networks:
-      - autogpt-ghost
+    env_file:
+      - .env
     volumes:
-      - ghost-db-data:/var/lib/mysql
-  
-volumes:
-  ghost-data:
-  ghost-db-data:
+      - ./log:/var/log/mysql
+      - ./lib:/var/lib/mysql
+
 networks:
   auto-gpt.tech:
     external: true
-  autogpt-ghost:
