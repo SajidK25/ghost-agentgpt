@@ -26,6 +26,8 @@ services:
     networks:
       - auto-gpt.tech
       - ghost-networks
+    volumes:
+      - ./content:/var/lib/ghost/content
     depends_on:
       - db
   db:
@@ -38,6 +40,8 @@ services:
       - ghost-networks
     labels:
       - "traefik.enable=false"
+    volumes:
+      - ghost-db-data
     
 volumes:
   ghost-db-data:
