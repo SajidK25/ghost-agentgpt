@@ -16,7 +16,7 @@ services:
       - ENV=production (so development mode needs to be explicitly specified if desired)
      
     volumes:
-      - $PWD/ghost/volumes/config.production.json:/var/lib/ghost/config.production.json:z
+      - $PWD/ghost/config.production.json:/var/lib/ghost/config.production.json:z
       - ./ghost/content:/var/lib/ghost/content
     networks:
       - auto-gpt.tech
