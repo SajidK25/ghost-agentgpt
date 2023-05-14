@@ -3,16 +3,10 @@ version: '3.1'
 services:
 
   ghost:
-    image: ghost:latest
+    image: ghost:4-alpine
     restart: always
-    container_name: ghost-autogpt
-    # ports:
-    #   - 8089:2368
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.ghost.rule=Host(`auto-gpt.tech`)"
-      - "traefik.http.routers.ghost.entrypoints=websecure"
-      - "traefik.http.routers.ghost.tls.certresolver=myresolver"
+    ports:
+      - 8080:2368
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       database__client: mysql
@@ -24,24 +18,13 @@ services:
       url: https://auto-gpt.tech
       # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
       #NODE_ENV: development
-    volumes:
-      - ./content:/var/lib/ghost/content
-    networks:
-      - auto-gpt.tech
-    links:
-      - db:db
-    depends_on:
-      - db
 
   db:
-    image: mariadb:latest
-    command: --default-authentication-plugin=mysql_native_password
+    image: mysql:8.0
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
-    volumes:
-      - ghost-db-data:/var/lib/mysql
-  
+    
 volumes:
   ghost-db-data:
 networks:
