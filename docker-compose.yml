@@ -21,9 +21,9 @@ services:
     networks:
       - auto-gpt.tech
     depends_on:
-      - db
+      - mysql
     links:
-      - db
+      - mysql
 
   mysql:
     image: mysql:latest
