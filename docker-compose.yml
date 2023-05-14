@@ -22,6 +22,8 @@ services:
       - auto-gpt.tech
     depends_on:
       - db
+    links:
+      - db
 
   db:
     image: mysql:latest
