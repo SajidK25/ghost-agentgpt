@@ -25,7 +25,7 @@ services:
       #NODE_ENV: development
     networks:
       - auto-gpt.tech
-      - default
+      - ghost-networks
     depends_on:
       - db
   db:
@@ -35,7 +35,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: example
     networks:
-      - default
+      - ghost-networks
     labels:
       - "traefik.enable=false"
     
@@ -44,3 +44,4 @@ volumes:
 networks:
   auto-gpt.tech:
     external: true
+  ghost-networks:
