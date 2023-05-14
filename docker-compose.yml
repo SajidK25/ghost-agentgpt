@@ -5,8 +5,13 @@ services:
   ghost:
     image: ghost:4-alpine
     restart: always
-    ports:
-      - 8090:2368
+    # ports:
+    #   - 8090:2368
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ghost.rule=Host(`auto-gpt.tech`)"
+      - "traefik.http.routers.ghost.entrypoints=websecure"
+      - "traefik.http.routers.ghost.tls.certresolver=myresolver"
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       database__client: mysql
@@ -15,10 +20,11 @@ services:
       database__connection__password: example
       database__connection__database: ghost
       # this url value is just an example, and is likely wrong for your environment!
-      url: http://75.119.157.23:8090/
+      url: https://auto-gpt.tech
       # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
       #NODE_ENV: development
-
+    networks:
+      - auto-gpt.tech
   db:
     image: mysql:8.0
     restart: always
