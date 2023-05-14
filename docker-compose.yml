@@ -25,9 +25,9 @@ services:
     links:
       - db
 
-  db:
+  mysql:
     image: mysql:latest
-    container_name: ghost-db
+    container_name: mysql
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}

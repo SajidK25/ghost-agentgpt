@@ -9,7 +9,7 @@
         "connection": {
             "host": "db",
             "port": 3306,
-            "user": "ghost",
+            "user": "mysql",
             "password": "83ZU2D8RY3FNVgLearitFC4lXoUkdW807coi3ap1CrOlThrX",
             "database": "ghostdata",
             "charset": "utf8mb4"
