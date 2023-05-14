@@ -25,11 +25,14 @@ services:
       #NODE_ENV: development
     networks:
       - auto-gpt.tech
+      - default
   db:
     image: mysql:8.0
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
+    networks:
+      - default
     
 volumes:
   ghost-db-data:
