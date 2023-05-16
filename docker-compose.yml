@@ -44,7 +44,7 @@ services:
     labels:
       - "traefik.enable=false"
     volumes:
-      - ghost-db-data
+      - ghost-db-data:/var/lib/mysql:z
     
 volumes:
   ghost-db-data:
