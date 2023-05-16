@@ -9,12 +9,14 @@ services:
     #   - 8090:2368
     labels:
       - "traefik.enable=true"
+      - "traefik.http.routers.ghost-insecure.rule=Host(`auto-gpt.tech`)"
+      - "traefik.http.routers.ghost-insecure.entrypoints=web"
+      - "traefik.http.middlewares.ghost-redirect-web-secure.redirectscheme.scheme=https"
+      - "traefik.http.routers.ghost-insecure.middlewares=ghost-redirect-web-secure"
       - "traefik.http.routers.ghost.rule=Host(`auto-gpt.tech`)"
       - "traefik.http.routers.ghost.entrypoints=websecure"
+      - "traefik.http.routers.ghost.tls=true"
       - "traefik.http.routers.ghost.tls.certresolver=myresolver"
-      - "traefik.http.routers.ghost-insecure.rule=Host(`myapp.example.com`)"
-      - "traefik.http.routers.ghost-insecure.entrypoints=web"
-      - "traefik.http.routers.ghost-insecure.middlewares=redirecthttps"
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       database__client: mysql
