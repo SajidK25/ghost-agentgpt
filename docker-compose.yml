@@ -42,7 +42,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: example
     networks:
-      - ghost-networks
+      - ghost-xgpt-networks
     labels:
       - "traefik.enable=false"
     volumes:
