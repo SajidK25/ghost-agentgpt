@@ -5,52 +5,54 @@ services:
   ghost:
     image: ghost:5-alpine
     restart: always
+    container_name: mium-chat
     # ports:
     #   - 8090:2368
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.ghost-xgpt-insecure.rule=Host(`xgpt.nrw`)"
-      - "traefik.http.routers.ghost-xgpt-insecure.entrypoints=web"
-      - "traefik.http.middlewares.ghost-xgpt-redirect-web-secure.redirectscheme.scheme=https"
-      - "traefik.http.routers.ghost-insecure.middlewares=ghost-xgpt-redirect-web-secure"
-      - "traefik.http.routers.ghost-xgpt.rule=Host(`xgpt.nrw`)"
-      - "traefik.http.routers.ghost-xgpt.entrypoints=websecure"
-      - "traefik.http.routers.ghost-xgpt.tls=true"
-      - "traefik.http.routers.ghost-xgpt.tls.certresolver=myresolver"
+      - "traefik.http.routers.ghost-mium-insecure.rule=Host(`dok.mium.chat`)"
+      - "traefik.http.routers.ghost-mium-insecure.entrypoints=web"
+      - "traefik.http.middlewares.ghost-mium-redirect-web-secure.redirectscheme.scheme=https"
+      - "traefik.http.routers.ghost-insecure.middlewares=ghost-mium-redirect-web-secure"
+      - "traefik.http.routers.ghost-mium.rule=Host(`dok.mium.chat`)"
+      - "traefik.http.routers.ghost-mium.entrypoints=websecure"
+      - "traefik.http.routers.ghost-mium.tls=true"
+      - "traefik.http.routers.ghost-mium.tls.certresolver=myresolver"
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       database__client: mysql
       database__connection__host: db
-      database__connection__user: root
-      database__connection__password: example
-      database__connection__database: ghost
+      database__connection__user: ${DB_USER}
+      database__connection__password: ${DB_PASSWORD}
+      database__connection__database: ${DATABASE}
       # this url value is just an example, and is likely wrong for your environment!
-      url: https://xgpt.nrw
+      url: ${GHOST_URL}
       # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
       #NODE_ENV: development
     networks:
       - auto-gpt.tech
-      - ghost-xgpt-networks
+      - ghost-mium-networks
     volumes:
       - ./content:/var/lib/ghost/content
     depends_on:
       - db
   db:
     image: mysql:8.0
+    container_name: mium-db
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
     networks:
-      - ghost-xgpt-networks
+      - ghost-mium-networks
     labels:
       - "traefik.enable=false"
     volumes:
-      - ghost-xgpt-db-data:/var/lib/mysql:z
+      - ghost-mium-db-data:/var/lib/mysql:z
     
 volumes:
-  ghost-xgpt-db-data:
+  ghost-mium-db-data:
 networks:
   auto-gpt.tech:
     external: true
-  ghost-xgpt-networks:
+  ghost-mium-networks:
