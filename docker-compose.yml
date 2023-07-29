@@ -21,7 +21,7 @@ services:
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       database__client: mysql
-      database__connection__host: db
+      database__connection__host: mium-db
       database__connection__user: ${DB_USER}
       database__connection__password: ${DB_PASSWORD}
       database__connection__database: ${DATABASE}
@@ -42,7 +42,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     networks:
       - ghost-mium-networks
     labels:
