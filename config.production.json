@@ -1,5 +1,5 @@
 {
-    "url": "https://auto-gpt.tech",
+    "url": "https://xgpt.nrw",
     "server": {
       "port": 2368,
       "host": "0.0.0.0"
@@ -9,8 +9,8 @@
       "connection": {
         "host": "db",
         "port": 3306,
-        "user": "ghost",
-        "password": "83ZU2D8RY3FNVgLearitFC4lXoUkdW807coi3ap1CrOlThrX",
+        "user": "root",
+        "password": "example",
         "database": "ghost"
       }
     },
