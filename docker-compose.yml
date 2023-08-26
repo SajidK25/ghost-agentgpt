@@ -9,6 +9,7 @@ services:
     #   - 8090:2368
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=auto-gpt.tech"
       - "traefik.http.routers.ghost-xgpt-insecure.rule=Host(`xgpt.nrw`)"
       - "traefik.http.routers.ghost-xgpt-insecure.entrypoints=web"
       - "traefik.http.middlewares.ghost-xgpt-redirect-web-secure.redirectscheme.scheme=https"
