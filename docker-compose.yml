@@ -1,15 +1,15 @@
 version: '3.1'
 
 services:
-
   ghost:
-    image: ghost:5-alpine
+    image: ghost:5.60.0-alpine
     restart: always
     container_name: mium-chat
     # ports:
     #   - 8090:2368
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=auto-gpt.tech"
       - "traefik.http.routers.ghost-mium-insecure.rule=Host(`dok.mium.chat`)"
       - "traefik.http.routers.ghost-mium-insecure.entrypoints=web"
       - "traefik.http.middlewares.ghost-mium-redirect-web-secure.redirectscheme.scheme=https"
@@ -20,19 +20,20 @@ services:
       - "traefik.http.routers.ghost-mium.tls.certresolver=myresolver"
     environment:
       # see https://ghost.org/docs/config/#configuration-options
-      database__client: mysql
-      database__connection__host: db
-      database__connection__user: ${DB_USER}
-      database__connection__password: ${DB_PASSWORD}
-      database__connection__database: ${DATABASE}
+      # database__client: mysql
+      # database__connection__host: db
+      # database__connection__user: ${DB_USER}
+      # database__connection__password: ${DB_PASSWORD}
+      # database__connection__database: ${DATABASE}
       # this url value is just an example, and is likely wrong for your environment!
-      url: ${GHOST_URL}
+      # url: ${GHOST_URL}
       # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
-      #NODE_ENV: development
+      NODE_ENV: production
     networks:
       - auto-gpt.tech
       - ghost-mium-networks
     volumes:
+      - ./config.production.json:/var/lib/ghost/config.production.json:z
       - ./content:/var/lib/ghost/content
     depends_on:
       - db
