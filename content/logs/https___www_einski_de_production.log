@@ -1,0 +1,30 @@
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Ghost is running in production...","time":"2023-09-15T08:07:58.219Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Your site is now available on https://www.einski.de/","time":"2023-09-15T08:07:58.222Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Ctrl+C to shut down","time":"2023-09-15T08:07:58.223Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Ghost server started in 2.44s","time":"2023-09-15T08:07:58.225Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":50,"version":"5.60.0","err":{"id":500,"domain":"https://www.einski.de","code":"ECONNREFUSED","name":"DatabaseError","statusCode":500,"level":"critical","message":"connect ECONNREFUSED 172.22.0.2:3306","help":"\"Unknown database error\"","stack":"Error: connect ECONNREFUSED 172.22.0.2:3306\n    at /var/lib/ghost/versions/5.60.0/node_modules/knex-migrator/lib/database.js:57:19\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16)","hideStack":false},"msg":"connect ECONNREFUSED 172.22.0.2:3306","time":"2023-09-15T08:07:58.754Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":40,"version":"5.60.0","msg":"Ghost is shutting down","time":"2023-09-15T08:07:58.755Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":40,"version":"5.60.0","msg":"Ghost has shut down","time":"2023-09-15T08:07:58.757Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":40,"version":"5.60.0","msg":"Your site is now offline","time":"2023-09-15T08:07:58.757Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":40,"version":"5.60.0","msg":"Ghost was running for a few seconds","time":"2023-09-15T08:07:58.759Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Ghost is running in production...","time":"2023-09-15T08:08:01.449Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Your site is now available on https://www.einski.de/","time":"2023-09-15T08:08:01.454Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Ctrl+C to shut down","time":"2023-09-15T08:08:01.455Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Ghost server started in 1.069s","time":"2023-09-15T08:08:01.457Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Database is in a ready state.","time":"2023-09-15T08:08:02.013Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Ghost database ready in 1.638s","time":"2023-09-15T08:08:02.026Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Adding offloaded job to the queue","time":"2023-09-15T08:08:06.000Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Scheduling job mentions-email-report at 3 3 * * * *. Next run on: Fri Sep 15 2023 09:03:03 GMT+0000 (Coordinated Universal Time)","time":"2023-09-15T08:08:06.026Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Ghost URL Service Ready in 6.831s","time":"2023-09-15T08:08:07.219Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Adding offloaded job to the queue","time":"2023-09-15T08:08:07.254Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Scheduling job clean-expired-comped at 3 17 0 * * *. Next run on: Sat Sep 16 2023 00:17:03 GMT+0000 (Coordinated Universal Time)","time":"2023-09-15T08:08:07.259Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Adding offloaded job to the queue","time":"2023-09-15T08:08:07.267Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Scheduling job clean-tokens at 7 15 22 * * *. Next run on: Fri Sep 15 2023 22:15:07 GMT+0000 (Coordinated Universal Time)","time":"2023-09-15T08:08:07.271Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Ghost booted in 6.962s","time":"2023-09-15T08:08:07.350Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Adding offloaded job to the queue","time":"2023-09-15T08:08:07.369Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Scheduling job update-check at 21 51 8 * * *. Next run on: Fri Sep 15 2023 08:51:21 GMT+0000 (Coordinated Universal Time)","time":"2023-09-15T08:08:07.375Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":30,"version":"5.60.0","msg":"Running milestone emails job on Mon Sep 18 2023 08:08:07 GMT+0000 (Coordinated Universal Time)","time":"2023-09-15T08:08:07.395Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":40,"version":"5.60.0","msg":"Ghost is shutting down","time":"2023-09-15T08:09:24.783Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":40,"version":"5.60.0","msg":"Ghost has shut down","time":"2023-09-15T08:09:24.786Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":40,"version":"5.60.0","msg":"Your site is now offline","time":"2023-09-15T08:09:24.786Z","v":0}
+{"name":"Log","hostname":"0708bb7837dd","pid":1,"level":40,"version":"5.60.0","msg":"Ghost was running for a minute","time":"2023-09-15T08:09:24.787Z","v":0}

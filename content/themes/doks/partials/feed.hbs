@@ -1,0 +1,82 @@
+<div data-pagination-feed class="timeline max-w-3xl mx-auto py-16 sm:py-20">
+    {{#foreach posts}}
+        {{^has tag="#landing"}}
+            <div data-pagination-post 
+                class="timeline-post flex flex-wrap mb-7 sm:mb-10 before:block before:w-full before:pb-20 before:mt-10 before:border-t dark:before:border-gray-50/10 {{post_class}}" 
+                data-post-month="{{date format="MM"}}" 
+                data-post-year="{{date format="YYYY"}}"
+            >
+                <div class="timeline-meta w-full sm:w-1/2 flex-none capitalize pr-4 mb-10 sm:mb-0 text-gray-500 dark:text-gray-400">
+                    {{date format="MMMM YYYY"}}
+                </div>
+
+                <div class="w-full sm:w-1/2 flex-none ml-auto">
+                    {{#if feature_image}}
+                        {{#if ../page}}
+                            {{#with ../page }} {{!-- Back to page context --}}
+                                {{#has tag="#blog-with-images"}}
+                                    {{#with ..}} {{!-- Back to current post context --}}
+                                        <a href="{{url absolute="true"}}" class="block mb-2">
+                                            <figure>
+                                                <div class="relative rounded-md overflow-hidden bg-gray-50 dark:bg-gray-800 aspect-w-16 aspect-h-9
+                                                        after:absolute after:top-0 after:left-0 after:w-full after:h-full after:ring-1 after:ring-inset after:ring-gray-900/5 dark:after:ring-gray-50/5 after:rounded-md">
+                                                    <img
+                                                        class="lazyload !m-0 object-cover z-10 hover:scale-105"
+                                                        data-sizes="auto"
+                                                        data-srcset="{{> srcset }}"
+                                                        srcset="{{img_url feature_image size="xxs"}}"
+                                                        src="{{img_url feature_image size="xl"}}"
+                                                        alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                                                        loading="lazy"
+                                                    />
+                                                </div>
+                                            </figure>     
+                                        </a>
+                                    {{/with}}  
+                                {{/has}}
+                            {{/with}}                    
+                        {{/if}}
+                    {{/if}}     
+                    <h2>
+                        <a class="font-semibold hover:opacity-80 text-gray-900 dark:text-gray-200" href="{{url absolute="true"}}">
+                            {{title}}
+                        </a>
+                    </h2>
+
+                    <div class="mt-1 text-gray-500 dark:text-gray-400">
+                        <time class="capitalize" datetime="{{date format="YYYY-MM-DD"}}">
+                            {{date format="MMMM DD, YYYY"}}
+                        </time>
+                        {{^is "tag"}}
+                            {{#foreach tags limit="1"}}
+                                <span> — </span>
+                                <a class="hover:opacity-80" href="{{url absolute="true"}}">
+                                    {{name}}
+                                </a>
+                            {{/foreach}}
+                        {{/is}}
+                    </div>
+                </div>
+            </div>
+        {{/has}}
+    {{/foreach}}
+</div>
+
+{{#if pagination}}
+    <div class="flex flex-wrap justify-center">
+        <div class="w-full sm:w-1/2 flex-none"></div>
+        <div class="w-full sm:w-1/2 flex-none">
+            <button 
+                data-pagination-btn
+                data-total-pages="{{pagination.pages}}"
+                class="group hidden text-sm font-semibold mb-16 sm:mb-20 hover:opacity-80 dark:text-gray-200">
+                <span class="flex items-center">
+                    {{t "Load more"}}
+
+                    {{> icons/arrow-sm-down class="w-4 h-4 ml-0.5 group-[.loading]:hidden"}}
+                    {{> icons/loader class="w-4 h-4 ml-0.5 hidden group-[.loading]:inline"}}
+                </span>
+            </button>
+        </div>
+    </div>
+{{/if}}
