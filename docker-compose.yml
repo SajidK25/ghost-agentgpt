@@ -10,11 +10,11 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=auto-gpt.tech"
-      - "traefik.http.routers.ghost-insecure.rule=Host(`11ki.de`)"
+      - "traefik.http.routers.ghost-insecure.rule=Host(`11ki.de`) || Host(`www.11ki.de`)"
       - "traefik.http.routers.ghost-insecure.entrypoints=web"
       - "traefik.http.middlewares.ghost-redirect-web-secure.redirectscheme.scheme=https"
       - "traefik.http.routers.ghost-insecure.middlewares=ghost-redirect-web-secure"
-      - "traefik.http.routers.ghost.rule=Host(`11ki.de`)"
+      - "traefik.http.routers.ghost.rule=Host(`11ki.de`) || Host(`www.11ki.de`)"
       - "traefik.http.routers.ghost.entrypoints=websecure"
       - "traefik.http.routers.ghost.tls=true"
       - "traefik.http.routers.ghost.tls.certresolver=myresolver"
