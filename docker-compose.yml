@@ -10,11 +10,11 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=auto-gpt.tech"
-      - "traefik.http.routers.ghost-mium-insecure.rule=Host(`dok.mium.chat`)"
+      - "traefik.http.routers.ghost-mium-insecure.rule=Host(`dok.mium.chat` || `www.dok.mium.chat`)"
       - "traefik.http.routers.ghost-mium-insecure.entrypoints=web"
       - "traefik.http.middlewares.ghost-mium-redirect-web-secure.redirectscheme.scheme=https"
       - "traefik.http.routers.ghost-insecure.middlewares=ghost-mium-redirect-web-secure"
-      - "traefik.http.routers.ghost-mium.rule=Host(`dok.mium.chat`)"
+      - "traefik.http.routers.ghost-mium.rule=Host(`dok.mium.chat` || `www.dok.mium.chat`)"
       - "traefik.http.routers.ghost-mium.entrypoints=websecure"
       - "traefik.http.routers.ghost-mium.tls=true"
       - "traefik.http.routers.ghost-mium.tls.certresolver=myresolver"
