@@ -11,7 +11,7 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=auto-gpt.tech"
       - "traefik.http.middlewares.wwwtohttps.redirectregex.regex=^https?://www\\.(.+)"
-      - "traefik.http.middlewares.wwwtohttps.redirectregex.replacement=https://${1}"
+      - "traefik.http.middlewares.wwwtohttps.redirectregex.replacement=https://$${1}"
       - "traefik.http.middlewares.wwwtohttps.redirectregex.permanent=true"
       - "traefik.http.routers.ghost-mium-insecure.rule=Host(`dok.mium.chat`)"
       - "traefik.http.routers.ghost-mium-insecure.entrypoints=web"
