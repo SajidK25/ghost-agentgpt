@@ -3,7 +3,7 @@ version: '3.1'
 services:
 
   ghost:
-    image: ghost:5.60.0-alpine
+    image: ghost:5.75.1-alpine
     restart: always
     # ports:
     #   - 8090:2368
@@ -13,14 +13,14 @@ services:
       - "traefik.http.middlewares.wwwtohttps.redirectregex.regex=^https?://www\\.(.+)"
       - "traefik.http.middlewares.wwwtohttps.redirectregex.replacement=https://$${1}"
       - "traefik.http.middlewares.wwwtohttps.redirectregex.permanent=true"
-      - "traefik.http.routers.ghost-insecure.rule=Host(`11ki.de`) || Host(`www.11ki.de`)"
-      - "traefik.http.routers.ghost-insecure.entrypoints=web"
-      - "traefik.http.middlewares.ghost-redirect-web-secure.redirectscheme.scheme=https"
-      - "traefik.http.routers.ghost-insecure.middlewares=ghost-redirect-web-secure,wwwtohttps"
-      - "traefik.http.routers.ghost.rule=Host(`11ki.de`) || Host(`www.11ki.de`)"
-      - "traefik.http.routers.ghost.entrypoints=websecure"
-      - "traefik.http.routers.ghost.tls=true"
-      - "traefik.http.routers.ghost.tls.certresolver=myresolver"
+      - "traefik.http.routers.kiprojekt-insecure.rule=Host(`kiprojekt.de`) || Host(`www.kiprojekt.de`)"
+      - "traefik.http.routers.kiprojekt-insecure.entrypoints=web"
+      - "traefik.http.middlewares.kiprojekt-redirect-web-secure.redirectscheme.scheme=https"
+      - "traefik.http.routers.kiprojekt-insecure.middlewares=kiprojekt-redirect-web-secure,wwwtohttps"
+      - "traefik.http.routers.kiprojekt.rule=Host(`kiprojekt.de`) || Host(`www.kiprojekt.de`)"
+      - "traefik.http.routers.kiprojekt.entrypoints=websecure"
+      - "traefik.http.routers.kiprojekt.tls=true"
+      - "traefik.http.routers.kiprojekt.tls.certresolver=myresolver"
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       # database__client: mysql
@@ -34,7 +34,7 @@ services:
       NODE_ENV: production
     networks:
       - auto-gpt.tech
-      - ghost-networks
+      - kiprojekt-networks
     volumes:
       - ./config.production.json:/var/lib/ghost/config.production.json:z
       - ./content:/var/lib/ghost/content
@@ -47,15 +47,15 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: example
     networks:
-      - ghost-networks
+      - kiprojekt-networks
     labels:
       - "traefik.enable=false"
     volumes:
-      - ghost-db-data:/var/lib/mysql:z
+      - kiprojekt-db-data:/var/lib/mysql:z
     
 volumes:
-  ghost-db-data:
+  kiprojekt-db-data:
 networks:
   auto-gpt.tech:
     external: true
-  ghost-networks:
+  kiprojekt-networks:
