@@ -1,5 +1,5 @@
 {
-  "url": "https://www.11ki.de",
+  "url": "https://www.daten.team",
   "server": {
     "port": 2368,
     "host": "0.0.0.0"
@@ -10,7 +10,7 @@
       "host": "db",
       "port": 3306,
       "user": "root",
-      "password": "example",
+      "password": "Avery$trongPWa2z",
       "database": "ghost"
     }
   },

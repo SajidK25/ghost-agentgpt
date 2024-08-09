@@ -1,26 +1,24 @@
-version: '3.1'
-
 services:
-
   ghost:
-    image: ghost:5.60.0-alpine
+    image: ghost:5.89.0-alpine
     restart: always
     # ports:
     #   - 8090:2368
+    container_name: ghost_daten_container
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=auto-gpt.tech"
       - "traefik.http.middlewares.wwwtohttps.redirectregex.regex=^https?://www\\.(.+)"
       - "traefik.http.middlewares.wwwtohttps.redirectregex.replacement=https://$${1}"
       - "traefik.http.middlewares.wwwtohttps.redirectregex.permanent=true"
-      - "traefik.http.routers.ghost-insecure.rule=Host(`11ki.de`) || Host(`www.11ki.de`)"
-      - "traefik.http.routers.ghost-insecure.entrypoints=web"
-      - "traefik.http.middlewares.ghost-redirect-web-secure.redirectscheme.scheme=https"
-      - "traefik.http.routers.ghost-insecure.middlewares=ghost-redirect-web-secure,wwwtohttps"
-      - "traefik.http.routers.ghost.rule=Host(`11ki.de`) || Host(`www.11ki.de`)"
-      - "traefik.http.routers.ghost.entrypoints=websecure"
-      - "traefik.http.routers.ghost.tls=true"
-      - "traefik.http.routers.ghost.tls.certresolver=myresolver"
+      - "traefik.http.routers.daten-insecure.rule=Host(`daten.team`) || Host(`www.daten.team`)"
+      - "traefik.http.routers.daten-insecure.entrypoints=web"
+      - "traefik.http.middlewares.daten-redirect-web-secure.redirectscheme.scheme=https"
+      - "traefik.http.routers.daten-insecure.middlewares=daten-redirect-web-secure,wwwtohttps"
+      - "traefik.http.routers.daten.rule=Host(`daten.team`) || Host(`www.daten.team`)"
+      - "traefik.http.routers.daten.entrypoints=websecure"
+      - "traefik.http.routers.daten.tls=true"
+      - "traefik.http.routers.daten.tls.certresolver=myresolver"
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       # database__client: mysql
@@ -34,7 +32,7 @@ services:
       NODE_ENV: production
     networks:
       - auto-gpt.tech
-      - ghost-networks
+      - ghost-daten-networks
     volumes:
       - ./config.production.json:/var/lib/ghost/config.production.json:z
       - ./content:/var/lib/ghost/content
@@ -44,18 +42,19 @@ services:
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password
     restart: always
+    container_name: ghost_daten_db
     environment:
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     networks:
-      - ghost-networks
+      - ghost-daten-networks
     labels:
       - "traefik.enable=false"
     volumes:
-      - ghost-db-data:/var/lib/mysql:z
+      - ghost-daten-db-data:/var/lib/mysql:z
     
 volumes:
-  ghost-db-data:
+  ghost-daten-db-data:
 networks:
   auto-gpt.tech:
     external: true
-  ghost-networks:
+  ghost-daten-networks:
