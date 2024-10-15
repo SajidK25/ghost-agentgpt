@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   ghost:
-    image: ghost:5.60.0-alpine
+    image: ghost:5.96.1-alpine
     restart: always
     container_name: mium-chat
     # ports:
